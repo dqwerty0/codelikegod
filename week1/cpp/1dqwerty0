@@ -1,0 +1,25 @@
+class Solution {
+public:
+	vector<vector<int>> permute(vector<int>& nums) {
+		vector<int> arr;
+		vector<vector<int>> res;
+		rekt(nums, arr, res);
+		return res;
+	}
+private:
+	void rekt(vector<int>& nums, vector<int>& arr, vector<vector<int>> &res) {
+		if (nums.size() == 0){
+      res.push_back(arr);
+    }
+		else {
+			for (int i = 0; i < nums.size(); ++i) {
+				int n = nums[i];
+				arr.push_back(n);
+				nums.erase(nums.begin() + i);
+				rekt(nums, arr, res);
+				nums.insert(nums.begin() + i, 1, n);
+				arr.pop_back();
+			}
+		}
+	}
+};
